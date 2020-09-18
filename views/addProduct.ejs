@@ -1,0 +1,21 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+
+<div class="container text-center">
+    <form action="/admin/addProduct" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Product Name" class="form-control my-4 text-center">
+        <input type="text" name="price" placeholder="Product Price" class="form-control my-4 text-center">
+        <input type="text" name="description" placeholder="Product Description" class="form-control my-4 text-center">
+        <input type="text" name="category" placeholder="Category" class="form-control my-4 text-center">
+        <input type="file" name="image" placeholder="Image" class="form-control my-4 text-center">
+        <input type="submit" value="Add Product" class="btn btn-primary btn-lg">
+    </form>
+</div>
+
+
+
+
+
+
+<%- include('./Parts/footer.ejs')%>

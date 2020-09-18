@@ -1,0 +1,29 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+<div class="container text-center">
+    <h3>Create an Account</h3>
+
+    <form action="/signup" method="post">
+        <input type="text" class="form-control my-4" name="userName" placeholder="User Name">
+        <input type="text" class="form-control my-4" name="email" placeholder="Email">
+        <input type="password" class="form-control my-4" name="password" placeholder="Password">
+        <input type="password" class="form-control my-4" name="confirmPassword" placeholder="Confirm Password">
+        <input type="submit" value="Create Account" class="btn btn-primary btn-lg">
+    
+    </form>
+    <h5>
+        do you have an accout ? <a href="/login">Login</a>
+    </h5>
+
+    <% if(authError){ %>
+        <p class="container alert alert-danger text-center"> <%= authError%> </p>
+    <% }%>
+
+
+
+</div>
+
+
+
+<%- include('./Parts/footer.ejs')%>

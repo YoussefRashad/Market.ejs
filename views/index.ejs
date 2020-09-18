@@ -1,0 +1,58 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+<% if(validationError){ %>
+    <p class="container alert alert-danger my-3 text-center">
+        <%= validationError.msg %>
+    </p>
+<% } %>
+
+
+<div class="container text-center">
+    <% if (products.length === 0){ %>
+        <div class="alert alert-danger">
+            There is no Products
+        </div>
+    <% }else{ %>
+        <form action="/" method="GET" class="my-3 pb-4">
+            <select name="category" class="form-control" style="width: 300px; display: inline; height: 38px;">
+                <option value="All">All</option>
+            </select>
+            <input type="submit" value="Filter" class="btn btn-success">
+        </form>
+        <div class="row">
+    
+            <% for(let p of products){ %>
+            <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="/<%= p.image %>" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/product/<%= p._id %>"><%= p.name %></a>
+                        </h5>
+                        <p class="card-text"><%= p.description %></p>
+
+                        <form action="/cart" method="POST">
+                            <input type="number" name="productCount">
+                            <input type="hidden" name="name" value="<%= p.name %>">
+                            <input type="hidden" name="price" value="<%= p.price %>">
+                            <input type="hidden" name="productID" value="<%= p._id %>">
+                            <input type="hidden" name="redirectTo" value='/'>
+                            <input type="submit" class="btn btn-primary" value="Add To cart">
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+    <% } %>
+</div>
+
+
+
+
+
+<%- include('./Parts/footer.ejs')%>

@@ -1,0 +1,32 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+
+<div class="container">
+    <% if (!product){ %>
+        <div class="alert alert-danger">
+            There is no Products
+        </div>
+    <% }else{ %>
+    <div class="row">
+        <div class="col">
+            <img src="/<%= product.image %>" class="rounded float-left" alt="...">
+            <form action="/cart" method="get">
+                <input type="number">
+                <input type="submit" value="Add To Cart">
+            </form>
+        </div>
+
+        <div class="col">
+            <p><%= product.name %></p>
+            <p><%= product.price %></p>
+            <p><%= product.description %></p>
+        </div>
+
+
+    </div>
+    <% } %>
+</div>
+
+
+<%- include('./Parts/footer.ejs')%>

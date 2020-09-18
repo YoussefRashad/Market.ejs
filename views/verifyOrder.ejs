@@ -1,0 +1,23 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+
+<div class="container" style="margin-top: 10%; margin-left: 500px; width: 100px;">
+    
+    <form action="/order/verifyOrder" method="POST">
+        <input type="hidden" name="cartID" value="<%= dataVerifyOrder.cartID %>">
+        <input type="hidden" name="cartName" value="<%= dataVerifyOrder.cartName %>">
+        <input type="hidden" name="amount" value="<%= dataVerifyOrder.amount %>">
+        <input type="hidden" name="price" value="<%= dataVerifyOrder.price %>">
+        
+        <input type="text" name="address" placeholder="Address" style="width: 400px; text-align: center;">
+        <br>
+        <input type="submit" value="Order" class="btn btn-success" style="margin-left: 150px;margin-top:10px; width: 100px">
+    </form>
+
+</div>
+
+
+
+
+<%- include('./Parts/footer.ejs')%>

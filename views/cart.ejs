@@ -1,0 +1,68 @@
+<%- include('./Parts/head.ejs')%>
+<%- include('./Parts/navbar.ejs')%>
+
+<div class="container"></div>
+<% if(items === 0){  %>
+    <p class="alert alert-danger">There is no products to show in your cart</p>
+<% } else{  %>
+    <table class="table table-striped table-bordered container my-5 text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(let i=0; i<items.length; i++ ){ %>
+            <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td><%= items[i].name %></td>
+                <td><%= items[i].price %></td>
+
+                
+                <form method="POST">
+                    <%# Hidden data will send to verify Orders %>
+                    <input type="hidden" name="cartID" value="<%= items[i].productID %>">
+                    <input type="hidden" name="cartName" value="<%= items[i].name %>">
+                    <input type="hidden" name="price" value="<%= items[i].price %>">
+                    <td><input type="text" name="amount" value="<%= items[i].amount %>" class="text-center"></td>
+
+
+                    <td><%= ( items[i].amount * items[i].price )  %> $ </td>
+                    <td>
+                        <input type="submit" value="Save" formaction="/cart/save" class="btn btn-success">
+                        <input type="submit" value="Order" formaction="/order/verifyOrder" class="btn btn-success">
+                        <input type="submit" value="Delete" formaction="/cart/delete" class="btn btn-danger">
+                    </td>
+                </form>
+
+
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+<% }  %>
+
+<% if(validationError) { %>
+    <p class="container alert alert-danger text-center"><%= validationError.msg %></p>
+<% } %>
+</div>
+
+<div style="padding-left: 35%;">
+    <form method="post" class="container my-2">
+        <input type="hidden" name="ID" value="empty">
+        <input type="submit" value="Save All" formaction="/cart/saveAll" class="btn btn-success btn-lg">
+        <input type="submit" value="Order All" formaction="/order/verifyAllOrders" class="btn btn-success btn-lg">
+        <input type="submit" value="Delete All" formaction="/cart/deleteAll" class="btn btn-danger btn-lg">
+    </form>
+</div>
+
+
+
+
+<%- include('./Parts/footer.ejs')%>

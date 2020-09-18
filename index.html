@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="Join()">Join to Group</button>
+    <button onclick="sendMsg()">Send Msg To All</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+         let socket = io();
+         socket.on('connect',()=>{
+            console.log('client is connected now on Socket');
+         });
+         socket.on('sendMsg',()=>{
+            console.log('Received Msg from server side');
+         });
+         socket.on('newMsg',()=>{
+             console.log('msg received');
+         })
+         function Join() {
+            socket.emit('join');
+         }
+         function sendMsg() {
+             socket.emit('sendMsg');
+         }
+
+    </script>
+</body>
+</html>
