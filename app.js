@@ -69,33 +69,3 @@ app.use((req,res,next)=>{
 const PORT = process.env.PORT || 3500;
 
 app.listen(PORT,()=>console.log('listening on port 3500'))
-
-/*
-
-const express = require('express');
-const app = express();
-const path = require('path');
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-
-io.on("connection",(socket)=>{
-    
-    console.log('The ID of client is '+ socket.id);
-
-    socket.on('sendMsg',()=>{
-        console.log('send Msg Server');
-        io.to('MyRoom').emit('newMsg');
-    });
-
-    socket.on('join', () => {
-        console.log('Joining');
-        socket.join('MyRoom');
-    });
-
-})
-
-app.get('/',(req,res,next)=>{
-    res.sendfile(path.join(__dirname, 'index.html'));
-})
-
-server.listen(3500,()=>console.log("server is connected on port 3500"));*/
